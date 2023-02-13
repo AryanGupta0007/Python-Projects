@@ -5,7 +5,7 @@
 ## decrypting passoword and username of the user
 
 import os
-
+import time
 CONST = 2
 
 
@@ -14,24 +14,27 @@ def main():
     
     get_paths = import_path()
     print("Welcome to the password manager!. This app is useful in storing your passwords in a encrypted way.")
-    user_input = input("Enter signup if you are new to the password manager or Login to see or update your passwords. ").lower()
+    user_input = input("Menu\n1. \"Signup\" if you are new to the password manager\n2. \"Login\" to see or update your passwords. ").lower()
     match user_input:
         case "login":
             log, file_name = login(get_paths)
             print(log)
             if (log == "Login Successful"):
+                time.sleep(4)
+                os.system("cls")
                 print("Do you want to see your previously saved passwords or you want to add new passwords to your account? ")
                 user_choice = input("Enter 1 to update your account . 2 to read your saved passwords ")
                 match user_choice:
                     case  "1":
                         update_user_account(get_paths, file_name)
                     case "2":
-                        show_saved_passwords(get_paths, file_name)
+                        show_saved_passwords(get_paths, file_name)                        
                     case _:
                         print("Invalid Input")
         case "signup":
             print(signup(get_paths))
 
+                    
         case _:
             print("Invalid Input")    
         
@@ -49,7 +52,6 @@ def signup(path):
         if (file_name) in os.listdir():
             return (f"User {set_user_name} already exists. Log in")
             
-        file4 = open(file_name, "a")
     store_user_name = cipher(set_user_name, 22, "encode")
     store_password = cipher(set_password, 22, "encode")
     data_to_store = [store_user_name, store_password]
@@ -144,17 +146,12 @@ def show_saved_passwords(paths, file_name):
 
 def import_path():
     ## this is the file that contains the location of the files where location of the file  
-    os.chdir(r"C:\Users\panka\OneDrive\Desktop\KIDS\Aryan\code_wars")
-    paths = {"User_Details": "", "Database": ""}
-    name = ["User_Details", "Database"]
-    with open("paths.txt") as file1:
-        
-        for x in range(CONST):
-            txt = file1.readline()
-            txt = txt.replace("\n", "")
-            txt = txt.split(" ")
-            path = txt[1]
-            paths[name[x]] = path
+    os.chdir(r"C:")
+    if (os.path.exists("C:/Manager") == False):
+        os.makedirs(r"C:/Manager/User_Details")
+        os.makedirs(r"C:/Manager/Database")
+
+    paths = {"User_Details": r"C:/Manager/User_Details", "Database": r"C:/Manager/Database"}
     return paths
 
 
