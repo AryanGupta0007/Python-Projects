@@ -65,10 +65,11 @@ def main():
                 print(f"I suggest action (buy or sell) \t as the price currently is: ${current_price}\t which is {notification} to {alert_price}", end = "\n")                
                 
             else:
+                os.system("cls") 
                 print("Press \"Q\" to exit the program")
                 print("Press \"S\" to see the price stats")         
                 
-                os.system("cls")        
+                       
                 print(f"Symbol: {symbol}\t\t Current Price: ${round(float(price_dollar), 2)}\t\tAlert Price: {alert_price}\t Difference from alert price: ${difference}\t ", end = "\r")
                 sys.stdout.flush()
         
