@@ -3,11 +3,11 @@ import json
 import keyboard
 import sys
 import os
-import time
-from datetime import datetime
-import pandas as pd
-import matplotlib.pyplot as plt
-from tabulate import tabulate
+# import time
+# from datetime import datetime
+# import pandas as pd
+# import matplotlib.pyplot as plt
+# from tabulate import tabulate
 
 def main():
     os.system("cls")
@@ -26,10 +26,10 @@ def main():
         symbol_data = {"price":prices_dollar, "time":times}    
         get_Data_Dollar = requests.get(URL_for_dollar).json()
         # get_current_time = datetime.now()
-        get_current_time = time.strftime("%H:%M:%S", time.localtime())
+        # get_current_time = time.strftime("%H:%M:%S", time.localtime())
         
-        times.append(get_current_time)
-        # df = pd.DataFrame(symbol_data)
+        # times.append(get_current_time)
+        # # df = pd.DataFrame(symbol_data)
         # print(times, end="\r")
         # print(get_Data_Dollar)
         # print(get_Data_Dollar)
