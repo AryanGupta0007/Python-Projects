@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    <form action="/note_added" method="post"> <!-- action is what happens after submit-->
+        <h3>Old Notes</h3>
+        {% for row  in old_notes%}
+           {{row}}<br>
+        {% endfor %}    
+        <h1> Note</h1>
+
+        <textarea name="diary" required type="Message" rows="30" cols="30"></textarea>
+        <input type="submit"  value=save>
+        <br>
+         
+    </form>
+    <a href="/">logout</a>           
+</body>
+</html>
