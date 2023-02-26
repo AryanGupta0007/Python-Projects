@@ -88,10 +88,10 @@ def diary():
         email = request.args.get("email")
         session["Email"] = email
         try:
-            old_notes = crsr.execute("SELECT Notes, Date_time FROM DIARY WHERE Email = ?", (email,))# buggy code the data imported should be of the logged in user             
+            old_notes = crsr.execute("SELECT Notes, Date_time FROM DIARY WHERE Email = ?", (email,))             
             return render_template("diary.html", old_notes=old_notes)
         except:
-            # buggy code the data imported should be of the logged in user             
+                       
             return render_template("diary.html", old_notes="")
             
     elif request.method == "POST":
@@ -99,7 +99,7 @@ def diary():
         notes = request.form.get("diary")
         current_date_time = datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
         crsr.execute("INSERT INTO DIARY (Email, Notes, Date_time) VALUES  (?, ?, ?)", (email, notes, current_date_time))
-        old_notes = crsr.execute("SELECT Notes, Date_time FROM DIARY where email = ?", (email,))# buggy code the data imported should be of the logged in user             
+        old_notes = crsr.execute("SELECT Notes, Date_time FROM DIARY where email = ?", (email,))   
         return render_template("diary.html", old_notes=old_notes)
 
         
