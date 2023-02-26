@@ -56,7 +56,7 @@ def login():
             else:
                 return redirect("/login")
         except:
-            return redirect("/register")
+            return redirect("/signup")
         
     elif (request.method) == "GET":
         
