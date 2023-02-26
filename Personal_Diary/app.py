@@ -70,6 +70,7 @@ def signup():
         Email = request.form.get("email")
         try:
             crsr.execute("INSERT INTO DATA (Email, Name, Password) VALUES (?, ?, ?)", (Email, Name, Password))
+            conn.commit()
         except:
             return render_template("failure.html") 
         else:
@@ -99,6 +100,7 @@ def diary():
         notes = request.form.get("diary")
         current_date_time = datetime.datetime.now().strftime("%I:%M%p on %B %d, %Y")
         crsr.execute("INSERT INTO DIARY (Email, Notes, Date_time) VALUES  (?, ?, ?)", (email, notes, current_date_time))
+        conn.commit()
         old_notes = crsr.execute("SELECT Notes, Date_time FROM DIARY where email = ?", (email,))   
         return render_template("diary.html", old_notes=old_notes)
 
